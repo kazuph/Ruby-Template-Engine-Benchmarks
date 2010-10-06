@@ -1,0 +1,20 @@
+h1. Template Engine Benchmarks
+
+This repository contains a set of very basic benchmarks to see which template engine was the fastest.
+While I know some benchmarks aren't very accurate (HAML has to parse much more) I tried to keep all templates as similar as possible.
+
+3 warmup rounds were run before one final run. The results of the benchmarks are stored in a file called "results.txt"
+
+h2. Template Engines
+
+* Liquid
+* ERB
+* Etanni (ships with Ramaze)
+* Tenjin (with and without cache)
+* HAML (with and without :ugly)
+
+h2. System
+
+Computer: Macbook Pro 17" C2D 2.8Ghz 4GB DDR3 1066 Mhz
+Ruby: ruby 1.9.2p0 (2010-08-18 revision 29036) [x86_64-darwin10.4.0]
+OS: Mac OS X 10.6.4

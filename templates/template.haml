@@ -1,0 +1,51 @@
+!!!
+%html{"xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    / Meta information
+    %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "Content-Type"}
+    %link{:href => "/css/base.css", :media => "all", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "/css/layout.css", :media => "all", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "/css/elements.css", :media => "all", :rel => "stylesheet", :type => "text/css"}
+    %title Bonsai • Admin
+  %body
+    / Container
+    #container.container_12.clearfix
+      / Header
+      #header.grid_12
+        / Site logo
+        #logo.grid_2.alpha
+          %h1 Bonsai
+        #navigation.grid_10.omega
+          %ul.clearfix
+            %li
+              = 'Dashboard'
+            %li
+              %a{:href => "#"}= 'Content'
+              %ul
+                %li
+                  %a{:href => "#"}= 'Sections'
+                %li
+                  %a{:href => "#"}= 'Custom Fields'
+                %li
+                  %a{:href => "#"}= 'Categories'
+                %li
+                  %a{:href => "#"}= 'Comments'
+            %li
+              %a{:href => "#"}= 'Extensions'
+              %ul
+                %li
+                  %a{:href => "#"}= 'Modules'
+                %li
+                  %a{:href => "#"}= 'Plugins'
+            %li
+              %a{:href => "#"}= 'Users'
+            %li
+              = 'Settings'
+      / Main content
+      #content.grid_9
+        %p= "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+      / Sidebar
+      #sidebar.grid_3
+      / Footer
+      #footer.grid_12
+        %p= 'Bonsai v0.1b'
