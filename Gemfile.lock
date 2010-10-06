@@ -1,0 +1,16 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    haml (3.0.21)
+    liquid (2.2.2)
+    lokar (0.2.0)
+    tenjin (0.6.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  haml
+  liquid
+  lokar
+  tenjin
