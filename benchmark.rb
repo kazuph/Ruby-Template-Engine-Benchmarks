@@ -6,6 +6,7 @@ require 'haml'
 require 'tenjin'
 require 'liquid'
 require 'erb'
+require 'lokar'
 require './etanni.rb'
 
 # Load the ERB file
@@ -31,47 +32,87 @@ tenjin_template = tenjin_template.read
 # Right, we have all the files. Let's move on.
 sleep 1
 
+# Amount of times to repeat a run
+n = 1000
+
 # Benchmark time! :D
-Benchmark.bm(20) do |run|
+Benchmark.bmbm(20) do |run|
   # Benchmark the ERB engine
   run.report "ERB" do
-    converted= ERB.new erb_template
-    converted= converted.result
+    
+    n.times do
+      converted= ERB.new erb_template
+      converted= converted.result
+    end
+    
   end
   
   # Benchmark the Etanni engine
   run.report "Etanni" do
-    etanni = Etanni.new etanni_template
-    etanni.result nil
+
+    n.times do
+      etanni = Etanni.new etanni_template
+      etanni.result nil
+    end
+
+  end
+  
+  # Benchmark the Lokar engine
+  run.report "Lokar" do
+    
+    n.times do
+      lokar = Lokar.parse etanni_template, nil
+    end
+    
   end
   
   # Benchmark the HAML engine
   run.report "HAML" do
-    converted= Haml::Engine.new haml_template
-    converted.render
+    
+    n.times do
+      converted= Haml::Engine.new haml_template
+      converted.render
+    end
+
   end
   
   # Run the HAML engine without the pretty output
   run.report "HAML-ugly" do
-    converted= Haml::Engine.new haml_template, :ugly => true
-    converted.render
+    
+    n.times do  
+      converted= Haml::Engine.new haml_template, :ugly => true
+      converted.render
+    end
+    
   end
   
   # Benchmark the Liquid engine
   run.report "Liquid" do
-    converted= Liquid::Template.parse liquid_template
-    converted.render nil
+    
+    n.times do    
+      converted= Liquid::Template.parse liquid_template
+      converted.render nil
+    end
+    
   end
   
   # Benchmark the Tenjin engine
   run.report "Tenjin" do
-    converted = Tenjin::Template.new :cache => false
-    converted = converted.convert tenjin_template
+    
+    n.times do
+      converted = Tenjin::Template.new :cache => false
+      converted = converted.convert tenjin_template
+    end
+    
   end
   
   # Run Tenjin with cache enabled
   run.report "Tenjin-cache" do
-    converted = Tenjin::Template.new :cache => true
-    converted = converted.convert tenjin_template
+    
+    n.times do
+      converted = Tenjin::Template.new :cache => true
+      converted = converted.convert tenjin_template
+    end
+    
   end
 end
