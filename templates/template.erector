@@ -1,0 +1,122 @@
+class Template < Erector::Widget
+  def content
+    rawtext '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'
+    html :xmlns => 'http://www.w3.org/1999/xhtml', 'xml:lang' => 'en' do
+      head do
+        meta 'http-equiv' => 'Content-Type', :content => 'text/html;charset=UTF-8'
+        
+        link :rel => 'stylesheet', :type => 'text/css', :href => '/css/base.css', :media => 'all'
+        link :rel => 'stylesheet', :type => 'text/css', :href => '/css/layout.css', :media => 'all'
+        link :rel => 'stylesheet', :type => 'text/css', :href => '/css/elements.css', :media => 'all'
+        title do
+          text 'Bonsai &bull; Admin'
+        end
+      end
+      body do
+        # Global container
+        div :id => 'container', :class => 'container_12 clearfix' do
+          
+          # Site header
+          div :id => 'header', :class => 'grid_12' do
+            # Logo
+            div :id => 'logo', :class => 'grid_2 alpha' do
+              h1 'Bonsai'
+            end
+
+            # Main navigation
+            div :id => 'navigation', :class => 'grid_10 omega' do
+              ul :class => 'clearfix' do
+                li do
+                  a :href => '#' do
+                    'Dashboard'
+                  end
+                end
+                
+                li do
+                  a :href => '#' do
+                    'Content'
+                  end
+                  
+                  ul do
+                    li do
+                      a :href => '#' do
+                        'Sections'
+                      end
+                    end
+                    
+                    li do
+                      a :href => '#' do
+                        'Custom Fields'
+                      end
+                    end
+                    
+                    li do
+                      a :href => '#' do
+                        'Categories'
+                      end
+                    end
+                    
+                    li do
+                      a :href => '#' do
+                        'Comments'
+                      end
+                    end
+                    
+                  end
+                end # <-- End of content list
+                
+                li do
+                  a :href => '#' do
+                  'Extensions'
+                  end
+                  
+                  ul do
+                    
+                    li do
+                      a :href => '#' do
+                        'Modules'
+                      end
+                    end
+                    
+                    li do
+                      a :href => '#' do
+                        'Plugins'
+                      end
+                    end
+                    
+                  end
+                end # <-- End of extension list
+                
+                li do
+                  a :href => '#' do
+                    'Users'
+                  end
+                end
+                
+                li do
+                  a :href => '#' do
+                    'Settings'
+                  end
+                end
+                
+              end
+            end
+          end # <-- End of site header
+          
+          div :id => 'content', :class => 'grid_9' do
+            p "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+          end
+          
+          div :id => 'sidebar', :class => 'grid_3' do
+            
+          end
+          
+          div :id => 'footer', :class => 'grid_12' do
+            p 'Bonsai v0.1b'
+          end
+          
+        end
+      end
+    end
+  end
+end

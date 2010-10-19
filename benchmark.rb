@@ -8,6 +8,7 @@ require 'liquid'
 require 'erb'
 require 'lokar'
 require './etanni.rb'
+require 'erector'
 
 # Load the ERB file
 erb_template    = File.open 'templates/template.html.erb', 'r'
@@ -29,6 +30,10 @@ liquid_template = liquid_template.read
 tenjin_template = File.open 'templates/template.rbhtml', 'r'
 tenjin_template = tenjin_template.read
 
+# Load the Erector file
+erector_template= File.open 'templates/template.erector', 'r'
+erector_template= erector_template.read
+
 # Right, we have all the files. Let's move on.
 sleep 1
 
@@ -37,6 +42,8 @@ n = 1000
 
 # Benchmark time! :D
 Benchmark.bmbm(20) do |run|
+  # == ERB ==
+  
   # Benchmark the ERB engine
   run.report "ERB" do
     
@@ -46,6 +53,8 @@ Benchmark.bmbm(20) do |run|
     end
     
   end
+  
+  # == ETANNI ==
   
   # Benchmark the Etanni engine
   run.report "Etanni" do
@@ -57,6 +66,8 @@ Benchmark.bmbm(20) do |run|
 
   end
   
+  # == LOKAR ==
+  
   # Benchmark the Lokar engine
   run.report "Lokar" do
     
@@ -65,6 +76,26 @@ Benchmark.bmbm(20) do |run|
     end
     
   end
+  
+  # == ERECTOR ==
+  
+  # Benchmark the Erector engine
+  run.report "Erector" do
+    n.times do
+      eval erector_template
+      html = Kernel.const_get('Template').new.to_html
+    end
+  end
+  
+  # Benchmark Erector using Pretty printing
+  run.report "Erector-prettyprint" do
+    n.times do
+      eval erector_template
+      html = Kernel.const_get('Template').new.to_html(:prettyprint => true)
+    end
+  end
+  
+  # == HAML ==
   
   # Benchmark the HAML engine
   run.report "HAML" do
@@ -86,6 +117,8 @@ Benchmark.bmbm(20) do |run|
     
   end
   
+  # == LIQUID ==
+  
   # Benchmark the Liquid engine
   run.report "Liquid" do
     
@@ -95,6 +128,8 @@ Benchmark.bmbm(20) do |run|
     end
     
   end
+  
+  # == TENJIN ==
   
   # Benchmark the Tenjin engine
   run.report "Tenjin" do
