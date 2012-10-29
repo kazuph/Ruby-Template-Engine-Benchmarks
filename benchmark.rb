@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# encodeing : utf-8
 
 # Load everything we need for the benchmark
 require 'benchmark'
